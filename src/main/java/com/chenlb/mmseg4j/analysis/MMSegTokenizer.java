@@ -1,8 +1,6 @@
 package com.chenlb.mmseg4j.analysis;
 
 import java.io.IOException;
-import java.io.Reader;
-import java.io.StringReader;
 
 import org.apache.lucene.analysis.Tokenizer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
@@ -15,13 +13,13 @@ import com.chenlb.mmseg4j.Word;
 
 public class MMSegTokenizer extends Tokenizer {
 
-	private MMSeg mmSeg;
+	public MMSeg mmSeg;
 
-	private CharTermAttribute termAtt;
-	private OffsetAttribute offsetAtt;
-	private TypeAttribute typeAtt;
+	public CharTermAttribute termAtt;
+	public OffsetAttribute offsetAtt;
+	public TypeAttribute typeAtt;
 
-	private final Seg seg;
+	public final Seg seg;
 
 	public MMSegTokenizer(Seg seg) {
 		this.seg = seg;
@@ -44,7 +42,7 @@ public class MMSegTokenizer extends Tokenizer {
 	}
 
 	@Override
-	public final boolean incrementToken() throws IOException {
+	public  boolean incrementToken() throws IOException {
 		clearAttributes();
 		Word word = mmSeg.next();
 		if(word != null) {
