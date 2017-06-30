@@ -10,7 +10,7 @@ import com.chenlb.mmseg4j.Seg;
 
 
 /**
- * 最多分词方式.
+ * 按字符单个分词，过滤特殊字符、标点符合、空格等
  * 
  * @author chenlb 2009-4-6 下午08:43:46
  */

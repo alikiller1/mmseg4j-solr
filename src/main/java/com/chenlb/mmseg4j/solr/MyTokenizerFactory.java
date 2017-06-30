@@ -50,9 +50,11 @@ public class MyTokenizerFactory extends TokenizerFactory implements ResourceLoad
 		
 		String mode = args.get("mode");
 		if("my1".equals(mode)) {
+			//按字符单个分词，不过滤特殊字符、标点符合、空格等
 			logger.info("use my1 mode");
 			tokenizer = new MyTokenizer1(new SimpleSeg(dic));
 		} else if("my2".equals(mode)) {
+			//按字符单个分词，过滤特殊字符、标点符合、空格等
 			logger.info("use my2 mode");
 			tokenizer = new MyTokenizer2(new SimpleSeg(dic));
 		} else {
