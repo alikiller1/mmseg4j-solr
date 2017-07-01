@@ -49,5 +49,4 @@ public class UseLucene {
 
 		iw.close();
 	}
-
 }

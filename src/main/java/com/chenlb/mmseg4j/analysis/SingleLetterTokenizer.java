@@ -10,10 +10,10 @@ import com.chenlb.mmseg4j.Word;
  * @return
  * @throws IOException
  */
-public class MyTokenizer1 extends MMSegTokenizer {
+public class SingleLetterTokenizer extends MMSegTokenizer {
 
 	
-	public MyTokenizer1(Seg seg) {
+	public SingleLetterTokenizer(Seg seg) {
 		super(seg);
 	}
 

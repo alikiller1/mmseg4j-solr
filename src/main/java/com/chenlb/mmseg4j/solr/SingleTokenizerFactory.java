@@ -2,8 +2,8 @@ package com.chenlb.mmseg4j.solr;
 
 import com.chenlb.mmseg4j.*;
 import com.chenlb.mmseg4j.analysis.MMSegTokenizer;
-import com.chenlb.mmseg4j.analysis.MyTokenizer1;
-import com.chenlb.mmseg4j.analysis.MyTokenizer2;
+import com.chenlb.mmseg4j.analysis.SingleLetterTokenizer;
+import com.chenlb.mmseg4j.analysis.SingleWordTokenizer;
 
 import org.apache.lucene.analysis.Tokenizer;
 import org.apache.lucene.analysis.util.ResourceLoader;
@@ -15,15 +15,15 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
-public class MyTokenizerFactory extends TokenizerFactory implements ResourceLoaderAware {
+public class SingleTokenizerFactory extends TokenizerFactory implements ResourceLoaderAware {
 
-	private static final Logger logger = LoggerFactory.getLogger(MyTokenizerFactory.class);
+	private static final Logger logger = LoggerFactory.getLogger(SingleTokenizerFactory.class);
 	/* 线程内共享 */
 	private ThreadLocal<MMSegTokenizer> tokenizerLocal = new ThreadLocal<MMSegTokenizer>();
 	// protected dic for test
 	protected Dictionary dic = null;
 
-	public MyTokenizerFactory(Map<String, String> args) {
+	public SingleTokenizerFactory(Map<String, String> args) {
 		super(args);
 	}
 
@@ -49,17 +49,17 @@ public class MyTokenizerFactory extends TokenizerFactory implements ResourceLoad
 		logger.info("create new tokenizer ...");
 		
 		String mode = args.get("mode");
-		if("my1".equals(mode)) {
+		if("single_letter".equals(mode)) {
 			//按字符单个分词，不过滤特殊字符、标点符合、空格等
-			logger.info("use my1 mode");
-			tokenizer = new MyTokenizer1(new SimpleSeg(dic));
-		} else if("my2".equals(mode)) {
+			logger.info("use single_letter mode");
+			tokenizer = new SingleLetterTokenizer(new SimpleSeg(dic));
+		} else if("single_word".equals(mode)) {
 			//按字符单个分词，过滤特殊字符、标点符合、空格等
-			logger.info("use my2 mode");
-			tokenizer = new MyTokenizer2(new SimpleSeg(dic));
+			logger.info("use single_word mode");
+			tokenizer = new SingleWordTokenizer(new SimpleSeg(dic));
 		} else {
-			logger.info("default my2 mode");
-			tokenizer = new MyTokenizer2(new SimpleSeg(dic));
+			logger.info("default single_word mode");
+			tokenizer = new SingleWordTokenizer(new SimpleSeg(dic));
 		}
 		return tokenizer;
 	}

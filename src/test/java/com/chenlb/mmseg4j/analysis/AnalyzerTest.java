@@ -172,20 +172,20 @@ public class AnalyzerTest {
 	}
 	
 	@Test
-	public void testMy1() throws IOException {
+	public void testSingleLetter() throws IOException {
 		FileInputStream fis = new FileInputStream("src/test/resources/text-sentence.txt");
 		try {
-			Dictionary.load(fis, new AssertFileLoading(new ComplexSeg(dic), new MyAnalyzer1()));
+			Dictionary.load(fis, new AssertFileLoading(new ComplexSeg(dic), new SingleLetterAnalyzer()));
 		} finally {
 			fis.close();
 		}
 	}
 	
 	@Test
-	public void testMy2() throws IOException {
+	public void testSingleWord() throws IOException {
 		FileInputStream fis = new FileInputStream("src/test/resources/text-sentence.txt");
 		try {
-			Dictionary.load(fis, new AssertFileLoading(new ComplexSeg(dic), new MyAnalyzer2()));
+			Dictionary.load(fis, new AssertFileLoading(new ComplexSeg(dic), new SingleWordAnalyzer()));
 		} finally {
 			fis.close();
 		}

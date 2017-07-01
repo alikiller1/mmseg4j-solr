@@ -14,21 +14,21 @@ import com.chenlb.mmseg4j.Seg;
  * 
  * @author chenlb 2009-4-6 下午08:43:46
  */
-public class MyAnalyzer2 extends MMSegAnalyzer {
+public class SingleWordAnalyzer extends MMSegAnalyzer {
 
-	public MyAnalyzer2() {
+	public SingleWordAnalyzer() {
 		super();
 	}
 
-	public MyAnalyzer2(String path) {
+	public SingleWordAnalyzer(String path) {
 		super(path);
 	}
 
-	public MyAnalyzer2(Dictionary dic) {
+	public SingleWordAnalyzer(Dictionary dic) {
 		super(dic);
 	}
 
-	public MyAnalyzer2(File path) {
+	public SingleWordAnalyzer(File path) {
 		super(path);
 	}
 
@@ -37,6 +37,6 @@ public class MyAnalyzer2 extends MMSegAnalyzer {
 	}
 	@Override
 	protected TokenStreamComponents createComponents(String fieldName) {
-		return new TokenStreamComponents(new MyTokenizer2(newSeg()));
+		return new TokenStreamComponents(new SingleWordTokenizer(newSeg()));
 	}
 }
