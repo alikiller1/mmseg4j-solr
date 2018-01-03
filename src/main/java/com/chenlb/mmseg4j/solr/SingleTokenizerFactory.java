@@ -4,6 +4,7 @@ import com.chenlb.mmseg4j.*;
 import com.chenlb.mmseg4j.analysis.MMSegTokenizer;
 import com.chenlb.mmseg4j.analysis.SingleLetterTokenizer;
 import com.chenlb.mmseg4j.analysis.SingleWordTokenizer;
+import com.chenlb.mmseg4j.analysis.SynonymySingleLetterTokenizer;
 
 import org.apache.lucene.analysis.Tokenizer;
 import org.apache.lucene.analysis.util.ResourceLoader;
@@ -57,7 +58,11 @@ public class SingleTokenizerFactory extends TokenizerFactory implements Resource
 			//按字符单个分词，过滤特殊字符、标点符合、空格等
 			logger.info("use single_word mode");
 			tokenizer = new SingleWordTokenizer(new SimpleSeg(dic));
-		} else {
+		}  else if("synonymy_single_word".equals(mode)) {
+			//按字符单个分词，过滤特殊字符、标点符合、空格等
+			logger.info("use synonymy_single_word mode");
+			tokenizer = new SynonymySingleLetterTokenizer(new SimpleSeg(dic));
+		}else {
 			logger.info("default single_word mode");
 			tokenizer = new SingleWordTokenizer(new SimpleSeg(dic));
 		}
